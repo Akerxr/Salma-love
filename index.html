@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى سلمى ❤️</title>
+    <style>
+        :root { --main-pink: #ffb6c1; --dark-pink: #ff4d6d; --soft-pink: #fff0f3; }
+        body { background: var(--soft-pink); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; overflow-x: hidden; position: relative; padding: 20px 0; }
+        .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .heart { position: absolute; color: var(--dark-pink); animation: fly 10s linear infinite; opacity: 0.6; }
+        @keyframes fly { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+        
+        .card { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2); text-align: center; width: 92%; max-width: 450px; position: relative; z-index: 10; border: 3px solid var(--main-pink); }
+        input { padding: 12px; border: 2px solid var(--main-pink); border-radius: 12px; width: 85%; margin: 15px 0; font-size: 18px; text-align: center; outline: none; }
+        button { background: var(--dark-pink); color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 18px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        
+        #main-content { display: none; }
+
+        .lyrics-container { margin-bottom: 30px; font-size: 19px; font-weight: bold; color: #d1d1d1; line-height: 1.6; }
+        .lyric-line { transition: all 1.2s ease; display: block; margin-bottom: 12px; opacity: 0.3; }
+        .lyric-line.active { color: var(--dark-pink); opacity: 1; transform: scale(1.08); text-shadow: 0 0 10px var(--main-pink); }
+
+        .love-message { font-size: 17px; color: #444; line-height: 1.6; margin: 15px 0; padding: 15px; border-right: 5px solid var(--dark-pink); background: #fff8f9; border-radius: 0 15px 15px 0; text-align: right; }
+        .counter-title { color: var(--dark-pink); font-weight: bold; margin-top: 15px; font-size: 18px; }
+        .counter { background: var(--main-pink); color: #fff; padding: 15px; border-radius: 20px; margin: 10px 0; font-weight: bold; }
+        .counter span { font-size: 24px; display: block; }
+        .photos { display: flex; gap: 10px; margin: 15px 0; }
+        .photos img { width: 50%; border-radius: 15px; border: 2px solid var(--main-pink); object-fit: cover; height: 140px; }
+    </style>
+</head>
+<body>
+
+    <audio id="love-song" loop>
+        <source src="https://files.catbox.moe/3x0al8.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="heart-bg" id="heart-bg"></div>
+
+    <div class="card">
+        <div id="login-screen">
+            <h2 style="color: var(--dark-pink);">أهلاً يا روحي ❤️</h2>
+            <input type="text" id="password" placeholder="5-11-2007">
+            <button onclick="checkPass()">انتي لسي هتفكري😂❤️</button>
+        </div>
+
+        <div id="main-content">
+            <div class="lyrics-container">
+                <span class="lyric-line" id="l1">ورجعيني لحلاوه البدايات</span>
+                <span class="lyric-line" id="l2">نعيد ونزود الحكايات</span>
+                <span class="lyric-line" id="l3">واشوفها واقفه قدامي</span>
+                <span class="lyric-line" id="l4">وسمعيني صوتها مره كمان</span>
+                <span class="lyric-line" id="l5">جيبيها صدفه في الاحلام</span>
+                <span class="lyric-line" id="l6">واخدها في حضني من تاني</span>
+            </div>
+
+            <div class="love-message">
+                والله يا سلمي عارف اني قفلتك مني وانك زهقتي بس والله يبنتي بحبك ومش عارف اعيش من غيرك ومش عايز غيرك تعالي نحاول مره كمان ينور عيني❤️
+            </div>
+
+            <div class="counter-title">يوم ما لقيت نفسي (25-8-2024)</div>
+            <div class="counter"><div id="timer"><span>جاري الحساب...</span></div></div>
+
+            <div class="photos">
+                <img src="https://i.ibb.co/LhdKTsbc/image.png">
+                <img src="https://i.ibb.co/LXGCtd10/image.png">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div'); heart.classList.add('heart'); heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw'; heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            document.getElementById('heart-bg').appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 400);
+
+        const correctPass = "5-11-2007"; 
+        const startDate = new Date(2024, 7, 25); 
+
+        function checkPass() {
+            if(document.getElementById('password').value === correctPass) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                const song = document.getElementById('love-song');
+                song.play();
+
+                // التوقيت الجديد (أبطأ شوية عشان يمشي مع الغناء)
+                setTimeout(() => document.getElementById('l1').classList.add('active'), 800);
+                setTimeout(() => document.getElementById('l2').classList.add('active'), 4500);
+                setTimeout(() => document.getElementById('l3').classList.add('active'), 8500);
+                setTimeout(() => document.getElementById('l4').classList.add('active'), 12500);
+                setTimeout(() => document.getElementById('l5').classList.add('active'), 16500);
+                setTimeout(() => document.getElementById('l6').classList.add('active'), 20500);
+
+                startTimer();
+            } else { alert("الباسورد غلط.. ركزي يا سولي 😂❤️"); }
+        }
+
+        function startTimer() {
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff / 3600000) % 24);
+                const m = Math.floor((diff / 60000) % 60);
+                const s = Math.floor((diff / 1000) % 60);
+                document.getElementById('timer').innerHTML = `<span>${d} يوم</span> ${h}:${m}:${s}`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
